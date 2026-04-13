@@ -1,0 +1,899 @@
+/* ==========================================================================
+   Donlon Life Science Consulting — Main Stylesheet
+   Dark theme with teal accents
+   Mobile-first responsive design
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CSS Custom Properties
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --color-bg: #212429;
+  --color-bg-card: #2a2d32;
+  --color-bg-header: rgba(33, 36, 41, 0.95);
+  --color-text: #ffffff;
+  --color-text-muted: #b0b3b8;
+  --color-primary: #5997ab;
+  --color-primary-dark: #265c73;
+  --color-primary-light: #7ab5c7;
+
+  /* Typography */
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Montserrat", sans-serif;
+  --line-height: 1.6;
+
+  /* Spacing */
+  --section-padding: 80px 20px;
+  --max-width: 1200px;
+
+  /* Misc */
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --transition: 0.3s ease;
+}
+
+/* ==========================================================================
+   2. Reset & Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-primary-light);
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   4. Skip Link (Accessibility)
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-text);
+  padding: 0.75rem 1.5rem;
+  z-index: 10000;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius) 0;
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   5. Section Container
+   ========================================================================== */
+
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   6. Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: var(--color-text);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.btn-accent {
+  background-color: var(--color-primary-light);
+  color: var(--color-bg);
+  border-color: var(--color-primary-light);
+}
+
+.btn-accent:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   7. Badge
+   ========================================================================== */
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-coming-soon {
+  background-color: var(--color-primary-dark);
+  color: var(--color-primary-light);
+}
+
+.badge-free {
+  background-color: rgba(89, 151, 171, 0.15);
+  color: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
+}
+
+/* ==========================================================================
+   8. Card
+   ========================================================================== */
+
+.card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ==========================================================================
+   9. Header & Navigation
+   ========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--color-bg-header);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header .section {
+  padding: 0 20px;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 20px;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--color-primary-light);
+  text-decoration: none;
+}
+
+.logo-accent {
+  color: var(--color-primary);
+}
+
+/* Desktop nav */
+.nav-links {
+  display: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-links a:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width var(--transition);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--color-bg-header);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem 20px 1.5rem;
+}
+
+.mobile-nav.active {
+  display: flex;
+}
+
+.mobile-nav a {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+}
+
+.mobile-nav a:hover {
+  color: var(--color-primary-light);
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   10. Hero Section
+   ========================================================================== */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(38, 92, 115, 0.3) 0%,
+    rgba(33, 36, 41, 0.95) 60%,
+    var(--color-bg) 100%
+  );
+  padding-top: 80px; /* account for fixed header */
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 2rem 1.5rem;
+}
+
+.hero h1 {
+  margin-bottom: 0.75rem;
+}
+
+.hero-highlight {
+  color: var(--color-primary);
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   11. Benefits Section
+   ========================================================================== */
+
+.benefits {
+  background-color: var(--color-bg);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.benefit-card {
+  border-top: 3px solid var(--color-primary);
+}
+
+.benefit-card .card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .benefits-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   12. About Section
+   ========================================================================== */
+
+.about {
+  background-color: var(--color-bg-card);
+}
+
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.about-image {
+  flex-shrink: 0;
+}
+
+.about-image img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-primary);
+  box-shadow: 0 0 30px rgba(89, 151, 171, 0.2);
+}
+
+.about-text {
+  text-align: center;
+}
+
+.about-text h2 {
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+@media (min-width: 768px) {
+  .about-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .about-image img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .about-text {
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   13. Security Section
+   ========================================================================== */
+
+.security {
+  background-color: var(--color-bg);
+}
+
+.security-inner {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.security-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.security-inner h2 {
+  margin-bottom: 1rem;
+}
+
+.security-inner p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   14. Services Section
+   ========================================================================== */
+
+.services {
+  background-color: var(--color-bg-card);
+}
+
+.services-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.service-card {
+  background-color: var(--color-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.service-card-header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark),
+    var(--color-primary)
+  );
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.service-card-header h3 {
+  margin-bottom: 0.25rem;
+  color: var(--color-text);
+}
+
+.service-price {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--color-text);
+}
+
+.service-price-period {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.service-card-body {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card-body ul {
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.service-card-body li {
+  padding: 0.4rem 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.service-card-body li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.service-card-body .btn {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   15. PraxisVerify Teaser Section
+   ========================================================================== */
+
+.praxisverify {
+  background-color: var(--color-bg);
+}
+
+.praxisverify-inner {
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-bg-card);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow), -4px 0 20px rgba(89, 151, 171, 0.1);
+  position: relative;
+}
+
+.praxisverify-inner h2 {
+  margin-bottom: 0.5rem;
+}
+
+.praxisverify-inner .badge {
+  margin-bottom: 1rem;
+}
+
+.praxisverify-inner p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.praxisverify-inner .btn {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .praxisverify-inner {
+    padding: 3rem 3rem;
+  }
+}
+
+/* ==========================================================================
+   16. Footer
+   ========================================================================== */
+
+.footer {
+  background-color: var(--color-bg-card);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 20px;
+  text-align: center;
+}
+
+.footer-inner p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.footer-inner a {
+  color: var(--color-primary);
+}
+
+.footer-inner a:hover {
+  color: var(--color-primary-light);
+}
+
+/* ==========================================================================
+   17. Additional Component Styles
+   ========================================================================== */
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.card-icon {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.card-icon svg {
+  display: block;
+}
+
+.service-step {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary-light);
+  margin-bottom: 0.25rem;
+}
+
+.service-card-body h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+.service-card-body p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ==========================================================================
+   18. Utility Classes
+   ========================================================================== */
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   18. Animations & Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
