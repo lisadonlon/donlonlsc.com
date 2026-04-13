@@ -9,15 +9,19 @@
    ========================================================================== */
 
 :root {
-  /* Colors */
-  --color-bg: #212429;
-  --color-bg-card: #2a2d32;
-  --color-bg-header: rgba(33, 36, 41, 0.95);
-  --color-text: #ffffff;
-  --color-text-muted: #b0b3b8;
+  /* Colors — layered backgrounds for depth */
+  --color-bg: #1a1d21;
+  --color-bg-elevated: #222529;
+  --color-bg-card: #2a2e34;
+  --color-bg-card-hover: #31353c;
+  --color-bg-header: rgba(22, 24, 28, 0.92);
+  --color-text: #f0f0f0;
+  --color-text-muted: #9da1a8;
   --color-primary: #5997ab;
   --color-primary-dark: #265c73;
   --color-primary-light: #7ab5c7;
+  --color-primary-glow: rgba(89, 151, 171, 0.15);
+  --color-divider: rgba(255, 255, 255, 0.06);
 
   /* Typography */
   --font-body: "Inter", sans-serif;
@@ -287,6 +291,7 @@ p {
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
+  background-color: var(--color-bg-card-hover);
 }
 
 /* ==========================================================================
@@ -302,7 +307,8 @@ p {
   background-color: var(--color-bg-header);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--color-divider);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header .section {
@@ -455,13 +461,11 @@ p {
   justify-content: center;
   text-align: center;
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(38, 92, 115, 0.3) 0%,
-    rgba(33, 36, 41, 0.95) 60%,
-    var(--color-bg) 100%
-  );
-  padding-top: 80px; /* account for fixed header */
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(38, 92, 115, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(89, 151, 171, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #16181c 0%, var(--color-bg) 100%);
+  padding-top: 80px;
 }
 
 .hero-content {
@@ -506,7 +510,8 @@ p {
    ========================================================================== */
 
 .benefits {
-  background-color: var(--color-bg);
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%);
+  border-top: 1px solid var(--color-divider);
 }
 
 .benefits-grid {
@@ -551,7 +556,10 @@ p {
    ========================================================================== */
 
 .about {
-  background-color: var(--color-bg-card);
+  background:
+    radial-gradient(ellipse at 80% 50%, var(--color-primary-glow) 0%, transparent 50%),
+    var(--color-bg-elevated);
+  border-top: 1px solid var(--color-divider);
 }
 
 .about-inner {
@@ -609,7 +617,10 @@ p {
    ========================================================================== */
 
 .security {
-  background-color: var(--color-bg);
+  background:
+    radial-gradient(ellipse at 50% 50%, var(--color-primary-glow) 0%, transparent 60%),
+    var(--color-bg);
+  border-top: 1px solid var(--color-divider);
 }
 
 .security-inner {
@@ -637,7 +648,8 @@ p {
    ========================================================================== */
 
 .services {
-  background-color: var(--color-bg-card);
+  background: linear-gradient(180deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%);
+  border-top: 1px solid var(--color-divider);
 }
 
 .services-intro {
@@ -746,7 +758,10 @@ p {
    ========================================================================== */
 
 .praxisverify {
-  background-color: var(--color-bg);
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(38, 92, 115, 0.12) 0%, transparent 50%),
+    var(--color-bg);
+  border-top: 1px solid var(--color-divider);
 }
 
 .praxisverify-inner {
@@ -787,8 +802,8 @@ p {
    ========================================================================== */
 
 .footer {
-  background-color: var(--color-bg-card);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #16181c;
+  border-top: 1px solid var(--color-divider);
 }
 
 .footer-inner {
