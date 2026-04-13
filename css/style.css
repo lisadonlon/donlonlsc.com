@@ -5,23 +5,24 @@
 
 /* --- 1. Custom Properties --- */
 :root {
-  --bg-deep: #0f1114;
-  --bg-base: #161920;
-  --bg-elevated: #1c2028;
-  --bg-surface: #232830;
-  --bg-surface-hover: #2a3040;
-  --bg-glass: rgba(22, 25, 32, 0.85);
+  --bg-deep: #1b1f25;
+  --bg-base: #212429;
+  --bg-elevated: #282c33;
+  --bg-surface: #2f343c;
+  --bg-surface-hover: #363c46;
+  --bg-glass: rgba(33, 36, 41, 0.88);
 
   --teal: #5997ab;
-  --teal-bright: #6ec0d8;
-  --teal-dark: #2d6e82;
-  --teal-deep: #1a4a5c;
-  --teal-glow: rgba(89, 151, 171, 0.12);
-  --teal-glow-strong: rgba(89, 151, 171, 0.25);
+  --teal-bright: #7ec8e0;
+  --teal-mid: #4a8da3;
+  --teal-dark: #3a7d94;
+  --teal-deep: #265c73;
+  --teal-glow: rgba(89, 151, 171, 0.18);
+  --teal-glow-strong: rgba(89, 151, 171, 0.35);
 
-  --text: #e8eaed;
-  --text-secondary: #8b919a;
-  --text-dim: #5a6070;
+  --text: #eef0f2;
+  --text-secondary: #a0a8b4;
+  --text-dim: #6b7280;
   --divider: rgba(255, 255, 255, 0.05);
 
   --font-display: "Playfair Display", Georgia, serif;
@@ -51,17 +52,16 @@ body {
   overflow-x: hidden;
 }
 
-/* Noise grain overlay */
+/* Repeating dot pattern texture */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px;
+  opacity: 0.4;
+  background-image: radial-gradient(circle, rgba(89, 151, 171, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -274,24 +274,33 @@ p { margin-bottom: 1em; }
   display: flex; align-items: center; justify-content: center;
   text-align: center; position: relative;
   background:
-    radial-gradient(ellipse 800px 600px at 25% 30%, var(--teal-glow-strong) 0%, transparent 70%),
-    radial-gradient(ellipse 600px 400px at 75% 70%, rgba(89, 151, 171, 0.08) 0%, transparent 70%),
-    radial-gradient(circle at 50% 120%, rgba(30, 60, 80, 0.2) 0%, transparent 50%),
-    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-base) 100%);
+    radial-gradient(ellipse 900px 700px at 20% 20%, rgba(89, 151, 171, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 80% 75%, rgba(38, 92, 115, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 500px 400px at 50% 50%, rgba(89, 151, 171, 0.08) 0%, transparent 70%),
+    linear-gradient(160deg, #1e2d35 0%, var(--bg-base) 40%, #1f2530 100%);
   padding-top: 80px;
 }
 
-/* Subtle grid pattern on hero */
+/* Grid pattern across hero */
 .hero::before {
   content: "";
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    linear-gradient(rgba(89, 151, 171, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(89, 151, 171, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at center, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at center, black 0%, transparent 100%);
   pointer-events: none;
+}
+
+/* Horizontal glow line below hero area */
+.hero::after {
+  content: "";
+  position: absolute; bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  box-shadow: 0 0 20px var(--teal-glow-strong), 0 0 60px var(--teal-glow);
 }
 
 .hero-content {
@@ -301,15 +310,17 @@ p { margin-bottom: 1em; }
 
 .hero h1 {
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #fff 0%, var(--teal-bright) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #c0e8f5 50%, var(--teal-bright) 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: none;
 }
 
 .hero p {
-  font-size: 1.1rem; color: var(--text-secondary);
+  font-size: 1.15rem; color: var(--text);
   margin-bottom: 1.5rem;
-  max-width: 500px; margin-left: auto; margin-right: auto;
+  max-width: 520px; margin-left: auto; margin-right: auto;
+  opacity: 0.8;
 }
 .hero p:last-of-type { margin-bottom: 2.5rem; }
 
@@ -325,8 +336,9 @@ p { margin-bottom: 1em; }
 /* --- 11. Benefits --- */
 .benefits {
   background:
+    radial-gradient(ellipse 600px 400px at 50% 0%, rgba(89, 151, 171, 0.08) 0%, transparent 70%),
     linear-gradient(180deg, var(--bg-base) 0%, var(--bg-elevated) 100%);
-  border-top: 1px solid var(--divider);
+  border-top: 1px solid rgba(89, 151, 171, 0.1);
 }
 
 .benefits-grid {
@@ -356,9 +368,10 @@ p { margin-bottom: 1em; }
 /* --- 12. About --- */
 .about {
   background:
-    radial-gradient(ellipse 500px 400px at 85% 50%, var(--teal-glow) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 500px at 85% 40%, rgba(89, 151, 171, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 300px at 10% 80%, rgba(89, 151, 171, 0.06) 0%, transparent 60%),
     var(--bg-elevated);
-  border-top: 1px solid var(--divider);
+  border-top: 1px solid rgba(89, 151, 171, 0.1);
 }
 
 .about-inner {
@@ -392,9 +405,9 @@ p { margin-bottom: 1em; }
 /* --- 13. Security --- */
 .security {
   background:
-    radial-gradient(ellipse 400px 300px at 50% 50%, var(--teal-glow) 0%, transparent 70%),
-    var(--bg-base);
-  border-top: 1px solid var(--divider);
+    radial-gradient(ellipse 500px 350px at 50% 50%, rgba(89, 151, 171, 0.15) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%);
+  border-top: 1px solid rgba(89, 151, 171, 0.1);
 }
 
 .security-inner {
